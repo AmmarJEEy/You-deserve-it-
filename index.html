@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only For You - Ammar</title>
+<style>
+  body, html {
+    margin: 0; padding: 0; overflow: hidden; font-family: 'Segoe UI', sans-serif;
+    background: pink; height: 100vh; width: 100vw; position: relative;
+  }
+
+  .center {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; color: white;
+  }
+
+  button {
+    padding: 15px 30px; font-size: 24px; border: none;
+    border-radius: 12px; cursor: pointer;
+    background: #ff3b8c; color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  }
+
+  .hidden { display: none; }
+
+  /* Balloons & petals */
+  .fall {
+    position: absolute; width: 20px; height: 20px;
+    border-radius: 50%; opacity: 0.8;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(360deg); }
+  }
+
+  /* Countdown & 12 AM */
+  #countScreen, #timeScreen {
+    font-size: 72px; font-weight: bold; color: #fff; text-shadow: 2px 2px 10px #000;
+  }
+
+  /* Cake */
+  #cake {
+    width: 400px; height: 400px; background: #fff; border-radius: 50%;
+    margin: auto; box-shadow: 0 0 40px pink; position: relative;
+  }
+  #candles {
+    width: 20px; height: 80px; background: orange;
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    border-radius: 5px;
+  }
+
+  /* Wishes and poetry */
+  .messageScreen {
+    width: 80%; max-width: 900px; color: #fff;
+    font-size: 32px; line-height: 1.6;
+    text-align: center; margin: auto;
+    text-shadow: 2px 2px 8px #000;
+  }
+
+  /* Gift wrap & images */
+  .giftScreen img { width: 500px; border-radius: 20px; box-shadow: 0 0 25px pink; }
+  .giftScreen p { font-size: 28px; margin-top: 20px; text-shadow: 2px 2px 8px #000; }
+
+  /* Neon I LOVE YOU */
+  #loveScreen {
+    background: black; color: white;
+    font-size: 40px; overflow: hidden;
+  }
+  .heart {
+    position: absolute; color: hotpink;
+    font-size: 24px; animation: floatHeart linear infinite;
+  }
+  @keyframes floatHeart {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="center" id="startScreen">
+  <h1 style="font-size:60px;">Click to Start ❤️</h1>
+  <button onclick="start()">Start</button>
+</div>
+
+<div class="center hidden" id="countScreen">3</div>
+<div class="center hidden" id="timeScreen">12 AM - The day of your birthday</div>
+<div class="center hidden" id="cakeScreen">
+  <div id="cake">
+    <div id="candles"></div>
+  </div>
+  <button onclick="nextScreen('wishesScreen')">Next</button>
+</div>
+
+<div class="center hidden messageScreen" id="wishesScreen">
+  Dear Ammar, آج کا دن خوشیوں بھرا ہو۔<br>
+  May Allah bless you with health, success, and endless happiness.<br>
+  Happy Birthday once again! 🎉
+  <br><br>
+  <button onclick="nextScreen('poetry1Screen')">Next</button>
+</div>
+
+<div class="center hidden messageScreen" id="poetry1Screen">
+  تجھے روز دیکھوں قریب سے<br>
+  میرے شوق بھی ہیں عجیب سے<br>
+  میں نے مانگا ہے بس تجھی کو اپنے رب اور اس کے حبیب سے<br>
+  میری آنکھوں میں ہے بس عاجزی میرے خواب بھی ہیں غریب سے<br>
+  میرے سب دکھوں کی دوا ہو تم ملے کیا سکوں پھر طبیب سے<br>
+  میں بہت ہی خوش ہوں جوڑ کر نصیب اپنے تیرے نصیب سے
+  <br><br>
+  <button onclick="nextScreen('poetry2Screen')">Next</button>
+</div>
+
+<div class="center hidden messageScreen" id="poetry2Screen">
+  چاند کہوں تو چھپ جاؤ گے<br>
+  خواب کہوں تو ٹوٹ جاؤ گے<br>
+  گلاب کہوں تو بکھر جاؤ گے<br>
+  دوست کہوں تو چھوڑ جو گے<br>
+  چلو آ پ کا نام زندگی رکھ دوں<br>
+  موت سے پہلے تو نہیں چھوڑ پاؤ گے
+  <br><br>
+  <button onclick="nextScreen('giftScreen')">Next</button>
+</div>
+
+<div class="center hidden giftScreen" id="giftScreen">
+  <img src="IMG-20260126-WA0068.jpg" alt="Father">
+  <p>I am thankful to your father for raising you so beautifully</p>
+  <br>
+  <button onclick="nextScreen('ammarScreen')">Next</button>
+</div>
+
+<div class="center hidden giftScreen" id="ammarScreen">
+  <img src="Lumii_20260111_155759958.jpg" alt="Ammar">
+  <p>And my moon, you are the only one ♥️</p>
+  <br>
+  <button onclick="nextScreen('loveScreen')">Surprise</button>
+</div>
+
+<div class="center hidden" id="loveScreen">
+  <h1 style="font-size:80px; color:hotpink; text-shadow:0 0 20px #fff;">I LOVE YOU ♥️</h1>
+  <button onclick="nextScreen('finalScreen')">Next</button>
+</div>
+
+<div class="center hidden messageScreen" id="finalScreen">
+  You are my everything, Ammar. May this year bring endless joy, love, and beautiful memories. ❤️✨
+</div>
+
+<audio id="bgMusic" src="Beyhadh Maya - Love Stuck(M4A_128K).m4a"></audio>
+
+<script>
+const music = document.getElementById('bgMusic');
+const startScreen = document.getElementById('startScreen');
+const countScreen = document.getElementById('countScreen');
+const timeScreen = document.getElementById('timeScreen');
+const cakeScreen = document.getElementById('cakeScreen');
+
+function start() {
+  startScreen.classList.add('hidden');
+  music.play();
+  let count = 3;
+  countScreen.classList.remove('hidden');
+  const interval = setInterval(()=>{
+    countScreen.innerText = count;
+    count--;
+    if(count < 0){
+      clearInterval(interval);
+      countScreen.classList.add('hidden');
+      timeScreen.classList.remove('hidden');
+      setTimeout(()=>{
+        timeScreen.classList.add('hidden');
+        cakeScreen.classList.remove('hidden');
+      },2000);
+    }
+  },1000);
+}
+
+function nextScreen(id){
+  const screens = document.querySelectorAll('.center, .messageScreen, .giftScreen');
+  screens.forEach(s=>s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+}
+
+// Simple balloons & petals effect
+for(let i=0;i<50;i++){
+  const div=document.createElement('div');
+  div.className='fall';
+  div.style.left=Math.random()*100+'vw';
+  div.style.width=15+Math.random()*25+'px';
+  div.style.height=15+Math.random()*25+'px';
+  div.style.background='hotpink';
+  div.style.animationDuration=(4+Math.random()*5)+'s';
+  div.style.animationDelay=Math.random()*5+'s';
+  document.body.appendChild(div);
+}
+</script>
+
+</body>
+    </html>
